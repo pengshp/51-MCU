@@ -1,0 +1,146 @@
+BL51 BANKED LINKER/LOCATER V6.22                                                        08/01/2015  14:34:10  PAGE 1
+
+
+BL51 BANKED LINKER/LOCATER V6.22, INVOKED BY:
+C:\KEIL_V5\C51\BIN\BL51.EXE .\Objects\main.obj TO .\Objects\动态数码管 PRINT (.\Listings\动态数码管.m51) RAMSIZE (256)
+
+
+MEMORY MODEL: SMALL
+
+
+INPUT MODULES INCLUDED:
+  .\Objects\main.obj (MAIN)
+  C:\KEIL_V5\C51\LIB\C51S.LIB (?C_STARTUP)
+  C:\KEIL_V5\C51\LIB\C51S.LIB (?C?ULDIV)
+  C:\KEIL_V5\C51\LIB\C51S.LIB (?C_INIT)
+
+
+LINK MAP OF MODULE:  .\Objects\动态数码管 (MAIN)
+
+
+            TYPE    BASE      LENGTH    RELOCATION   SEGMENT NAME
+            -----------------------------------------------------
+
+            * * * * * * *   D A T A   M E M O R Y   * * * * * * *
+            REG     0000H     0008H     ABSOLUTE     "REG BANK 0"
+            DATA    0008H     000CH     UNIT         ?DT?MAIN
+            DATA    0014H     0004H     UNIT         _DATA_GROUP_
+            IDATA   0018H     0001H     UNIT         ?STACK
+
+            * * * * * * *   C O D E   M E M O R Y   * * * * * * *
+            CODE    0000H     0003H     ABSOLUTE     
+                    0003H     0008H                  *** GAP ***
+            CODE    000BH     0003H     ABSOLUTE     
+            CODE    000EH     017FH     UNIT         ?PR?MAIN?MAIN
+            CODE    018DH     00CEH     UNIT         ?C?LIB_CODE
+            CODE    025BH     008CH     UNIT         ?C_C51STARTUP
+            CODE    02E7H     0057H     UNIT         ?PR?INTERRUPTTIMER0?MAIN
+            CODE    033EH     0015H     UNIT         ?C_INITSEG
+            CODE    0353H     0010H     UNIT         ?CO?MAIN
+
+
+
+OVERLAY MAP OF MODULE:   .\Objects\动态数码管 (MAIN)
+
+
+SEGMENT                            DATA_GROUP 
+  +--> CALLED SEGMENT            START    LENGTH
+------------------------------------------------
+?PR?INTERRUPTTIMER0?MAIN         -----    -----
+  +--> ?CO?MAIN
+
+*** NEW ROOT ***************************************************
+
+?C_C51STARTUP                    -----    -----
+  +--> ?PR?MAIN?MAIN
+  +--> ?C_INITSEG
+
+?PR?MAIN?MAIN                    0014H    0004H
+  +--> ?CO?MAIN
+
+
+BL51 BANKED LINKER/LOCATER V6.22                                                      08/01/2015  14:34:10  PAGE 2
+
+
+
+SYMBOL TABLE OF MODULE:  .\Objects\动态数码管 (MAIN)
+
+  VALUE           TYPE          NAME
+  ----------------------------------
+
+  -------         MODULE        MAIN
+  C:0000H         SYMBOL        _ICE_DUMMY_
+  D:0080H         PUBLIC        P0
+  D:0090H         PUBLIC        P1
+  B:00A8H.7       PUBLIC        EA
+  C:02E7H         PUBLIC        InterruptTimer0
+  C:0353H         PUBLIC        LedChar
+  D:0008H         PUBLIC        LedBuff
+  C:000EH         PUBLIC        main
+  D:0089H         PUBLIC        TMOD
+  D:0010H         PUBLIC        cnt
+  B:00A8H.1       PUBLIC        ET0
+  D:008CH         PUBLIC        TH0
+  D:008AH         PUBLIC        TL0
+  B:0088H.4       PUBLIC        TR0
+  D:0012H         PUBLIC        i
+  D:0013H         PUBLIC        flagls
+  -------         PROC          MAIN
+  -------         DO            
+  D:0014H         SYMBOL        sec
+  -------         ENDDO         
+  C:000EH         LINE#         20
+  C:000EH         LINE#         21
+  C:000EH         LINE#         22
+  C:0017H         LINE#         24
+  C:0019H         LINE#         25
+  C:001CH         LINE#         26
+  C:001FH         LINE#         27
+  C:0022H         LINE#         28
+  C:0024H         LINE#         29
+  C:0026H         LINE#         30
+  C:0026H         LINE#         31
+  C:0026H         LINE#         32
+  C:002BH         LINE#         33
+  C:002BH         LINE#         34
+  C:002EH         LINE#         35
+  C:0043H         LINE#         36
+  C:0063H         LINE#         37
+  C:008CH         LINE#         38
+  C:00B5H         LINE#         39
+  C:00DFH         LINE#         40
+  C:0109H         LINE#         41
+  C:0134H         LINE#         42
+  C:015FH         LINE#         43
+  C:018AH         LINE#         44
+  C:018AH         LINE#         45
+  -------         ENDPROC       MAIN
+  -------         PROC          INTERRUPTTIMER0
+  C:02E7H         LINE#         49
+  C:02F4H         LINE#         51
+  C:02F7H         LINE#         52
+BL51 BANKED LINKER/LOCATER V6.22                                                      08/01/2015  14:34:10  PAGE 3
+
+
+  C:02FAH         LINE#         53
+  C:0302H         LINE#         54
+  C:030BH         LINE#         55
+  C:030BH         LINE#         56
+  C:0311H         LINE#         57
+  C:0314H         LINE#         58
+  C:0314H         LINE#         59
+  C:0317H         LINE#         60
+  C:031EH         LINE#         61
+  C:031EH         LINE#         62
+  C:0327H         LINE#         63
+  C:032FH         LINE#         64
+  C:0333H         LINE#         65
+  -------         ENDPROC       INTERRUPTTIMER0
+  -------         ENDMOD        MAIN
+
+  -------         MODULE        ?C?ULDIV
+  C:01C9H         PUBLIC        ?C?ULDIV
+  -------         ENDMOD        ?C?ULDIV
+
+Program Size: data=25.0 xdata=0 code=859
+LINK/LOCATE RUN COMPLETE.  0 WARNING(S),  0 ERROR(S)

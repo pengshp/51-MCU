@@ -1,0 +1,159 @@
+BL51 BANKED LINKER/LOCATER V6.22                                                        07/17/2015  01:13:59  PAGE 1
+
+
+BL51 BANKED LINKER/LOCATER V6.22, INVOKED BY:
+C:\KEIL_V5\C51\BIN\BL51.EXE .\Objects\main.obj TO .\Objects\独立按键 PRINT (.\Listings\独立按键.m51)
+
+
+MEMORY MODEL: SMALL
+
+
+INPUT MODULES INCLUDED:
+  .\Objects\main.obj (MAIN)
+  C:\KEIL_V5\C51\LIB\C51S.LIB (?C_STARTUP)
+
+
+LINK MAP OF MODULE:  .\Objects\独立按键 (MAIN)
+
+
+            TYPE    BASE      LENGTH    RELOCATION   SEGMENT NAME
+            -----------------------------------------------------
+
+            * * * * * * *   D A T A   M E M O R Y   * * * * * * *
+            REG     0000H     0008H     ABSOLUTE     "REG BANK 0"
+            DATA    0008H     0003H     UNIT         _DATA_GROUP_
+            IDATA   000BH     0001H     UNIT         ?STACK
+
+            * * * * * * *   C O D E   M E M O R Y   * * * * * * *
+            CODE    0000H     0003H     ABSOLUTE     
+            CODE    0003H     0051H     UNIT         ?PR?MAIN?MAIN
+            CODE    0054H     0032H     UNIT         ?PR?KEY_SCAN?MAIN
+            CODE    0086H     0019H     UNIT         ?PR?_DELAY10MS?MAIN
+            CODE    009FH     000CH     UNIT         ?C_C51STARTUP
+
+
+
+OVERLAY MAP OF MODULE:   .\Objects\独立按键 (MAIN)
+
+
+SEGMENT                          DATA_GROUP 
+  +--> CALLED SEGMENT          START    LENGTH
+----------------------------------------------
+?C_C51STARTUP                  -----    -----
+  +--> ?PR?MAIN?MAIN
+
+?PR?MAIN?MAIN                  0008H    0001H
+  +--> ?PR?KEY_SCAN?MAIN
+
+?PR?KEY_SCAN?MAIN              0009H    0002H
+  +--> ?PR?_DELAY10MS?MAIN
+
+
+
+SYMBOL TABLE OF MODULE:  .\Objects\独立按键 (MAIN)
+
+  VALUE           TYPE          NAME
+  ----------------------------------
+
+  -------         MODULE        MAIN
+  C:0000H         SYMBOL        _ICE_DUMMY_
+  D:0080H         PUBLIC        P0
+  D:0090H         PUBLIC        P1
+BL51 BANKED LINKER/LOCATER V6.22                                                      07/17/2015  01:13:59  PAGE 2
+
+
+  C:0054H         PUBLIC        Key_Scan
+  C:0003H         PUBLIC        main
+  C:0086H         PUBLIC        _Delay10ms
+  -------         PROC          MAIN
+  -------         DO            
+  D:0008H         SYMBOL        ledValue
+  D:0007H         SYMBOL        keyNum
+  -------         ENDDO         
+  C:0003H         LINE#         19
+  C:0003H         LINE#         20
+  C:0003H         LINE#         23
+  C:0006H         LINE#         25
+  C:0006H         LINE#         26
+  C:0006H         LINE#         27
+  C:0009H         LINE#         29
+  C:0029H         LINE#         30
+  C:0029H         LINE#         31
+  C:0029H         LINE#         32
+  C:002CH         LINE#         33
+  C:002EH         LINE#         34
+  C:002EH         LINE#         35
+  C:0031H         LINE#         36
+  C:0033H         LINE#         37
+  C:0033H         LINE#         38
+  C:0036H         LINE#         39
+  C:0038H         LINE#         40
+  C:0038H         LINE#         41
+  C:003BH         LINE#         42
+  C:003DH         LINE#         43
+  C:003DH         LINE#         44
+  C:0040H         LINE#         45
+  C:0042H         LINE#         46
+  C:0042H         LINE#         47
+  C:0045H         LINE#         48
+  C:0047H         LINE#         49
+  C:0047H         LINE#         50
+  C:004AH         LINE#         51
+  C:004CH         LINE#         52
+  C:004CH         LINE#         53
+  C:004FH         LINE#         54
+  C:004FH         LINE#         55
+  C:004FH         LINE#         56
+  C:004FH         LINE#         57
+  C:004FH         LINE#         59
+  C:0052H         LINE#         60
+  -------         ENDPROC       MAIN
+  -------         PROC          KEY_SCAN
+  -------         DO            
+  D:0009H         SYMBOL        keyValue
+  D:000AH         SYMBOL        i
+  -------         ENDDO         
+  C:0054H         LINE#         70
+  C:0054H         LINE#         71
+  C:0054H         LINE#         72
+  C:0057H         LINE#         75
+  C:005CH         LINE#         76
+  C:005CH         LINE#         77
+BL51 BANKED LINKER/LOCATER V6.22                                                      07/17/2015  01:13:59  PAGE 3
+
+
+  C:0063H         LINE#         79
+  C:0068H         LINE#         80
+  C:0068H         LINE#         81
+  C:006BH         LINE#         82
+  C:006EH         LINE#         83
+  C:0073H         LINE#         84
+  C:0073H         LINE#         85
+  C:007AH         LINE#         86
+  C:007CH         LINE#         87
+  C:0083H         LINE#         88
+  C:0083H         LINE#         89
+  C:0083H         LINE#         91
+  C:0085H         LINE#         92
+  -------         ENDPROC       KEY_SCAN
+  -------         PROC          _DELAY10MS
+  D:0006H         SYMBOL        c
+  -------         DO            
+  D:0004H         SYMBOL        a
+  D:0005H         SYMBOL        b
+  -------         ENDDO         
+  C:0086H         LINE#         101
+  C:0086H         LINE#         102
+  C:0086H         LINE#         106
+  C:008FH         LINE#         107
+  C:008FH         LINE#         108
+  C:0091H         LINE#         109
+  C:0091H         LINE#         110
+  C:0095H         LINE#         111
+  C:0097H         LINE#         113
+  C:009EH         LINE#         114
+  -------         ENDPROC       _DELAY10MS
+  -------         ENDMOD        MAIN
+
+Program Size: data=12.0 xdata=0 code=171
+LINK/LOCATE RUN COMPLETE.  0 WARNING(S),  0 ERROR(S)

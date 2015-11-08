@@ -1,0 +1,118 @@
+BL51 BANKED LINKER/LOCATER V6.22                                                        07/22/2015  00:05:26  PAGE 1
+
+
+BL51 BANKED LINKER/LOCATER V6.22, INVOKED BY:
+C:\KEIL_V5\C51\BIN\BL51.EXE .\Objects\main.obj TO .\Objects\串口通信 PRINT (.\Listings\串口通信.m51) RAMSIZE (256)
+
+
+MEMORY MODEL: SMALL
+
+
+INPUT MODULES INCLUDED:
+  .\Objects\main.obj (MAIN)
+  C:\KEIL_V5\C51\LIB\C51S.LIB (?C_STARTUP)
+
+
+LINK MAP OF MODULE:  .\Objects\串口通信 (MAIN)
+
+
+            TYPE    BASE      LENGTH    RELOCATION   SEGMENT NAME
+            -----------------------------------------------------
+
+            * * * * * * *   D A T A   M E M O R Y   * * * * * * *
+            REG     0000H     0008H     ABSOLUTE     "REG BANK 0"
+            DATA    0008H     0002H     UNIT         ?DT?MAIN
+            IDATA   000AH     0001H     UNIT         ?STACK
+
+            * * * * * * *   C O D E   M E M O R Y   * * * * * * *
+            CODE    0000H     0003H     ABSOLUTE     
+            CODE    0003H     0019H     UNIT         ?PR?MAIN?MAIN
+                    001CH     0007H                  *** GAP ***
+            CODE    0023H     0003H     ABSOLUTE     
+            CODE    0026H     0016H     UNIT         ?PR?INIT_UART?MAIN
+            CODE    003CH     000CH     UNIT         ?C_C51STARTUP
+            CODE    0048H     0009H     UNIT         ?PR?SERIAL?MAIN
+
+
+
+OVERLAY MAP OF MODULE:   .\Objects\串口通信 (MAIN)
+
+
+SEGMENT
+  +--> CALLED SEGMENT
+---------------------
+?C_C51STARTUP
+  +--> ?PR?MAIN?MAIN
+
+?PR?MAIN?MAIN
+  +--> ?PR?INIT_UART?MAIN
+
+
+
+SYMBOL TABLE OF MODULE:  .\Objects\串口通信 (MAIN)
+
+  VALUE           TYPE          NAME
+  ----------------------------------
+
+  -------         MODULE        MAIN
+  C:0000H         SYMBOL        _ICE_DUMMY_
+  C:0048H         PUBLIC        serial
+  B:00A8H.7       PUBLIC        EA
+  B:00A8H.4       PUBLIC        ES
+BL51 BANKED LINKER/LOCATER V6.22                                                      07/22/2015  00:05:26  PAGE 2
+
+
+  B:0098H.0       PUBLIC        RI
+  D:0008H         PUBLIC        flag
+  B:0098H.1       PUBLIC        TI
+  C:0003H         PUBLIC        main
+  D:0099H         PUBLIC        SBUF
+  D:0087H         PUBLIC        PCON
+  D:0098H         PUBLIC        SCON
+  D:0089H         PUBLIC        TMOD
+  D:008DH         PUBLIC        TH1
+  D:008BH         PUBLIC        TL1
+  C:0026H         PUBLIC        init_uart
+  B:0088H.6       PUBLIC        TR1
+  D:0009H         PUBLIC        i
+  -------         PROC          INIT_UART
+  C:0026H         LINE#         13
+  C:0026H         LINE#         14
+  C:0026H         LINE#         15
+  C:0029H         LINE#         16
+  C:002CH         LINE#         17
+  C:002FH         LINE#         18
+  C:0032H         LINE#         19
+  C:0035H         LINE#         20
+  C:0037H         LINE#         21
+  C:0039H         LINE#         22
+  C:003BH         LINE#         23
+  -------         ENDPROC       INIT_UART
+  -------         PROC          MAIN
+  C:0003H         LINE#         25
+  C:0003H         LINE#         26
+  C:0003H         LINE#         27
+  C:0006H         LINE#         28
+  C:0006H         LINE#         29
+  C:0006H         LINE#         30
+  C:000BH         LINE#         31
+  C:000BH         LINE#         32
+  C:000DH         LINE#         33
+  C:0010H         LINE#         34
+  C:0013H         LINE#         35
+  C:0016H         LINE#         36
+  C:0018H         LINE#         37
+  C:001AH         LINE#         38
+  C:001AH         LINE#         39
+  -------         ENDPROC       MAIN
+  -------         PROC          SERIAL
+  C:0048H         LINE#         42
+  C:0048H         LINE#         44
+  C:004AH         LINE#         45
+  C:004DH         LINE#         46
+  C:0050H         LINE#         47
+  -------         ENDPROC       SERIAL
+  -------         ENDMOD        MAIN
+
+Program Size: data=11.0 xdata=0 code=74
+LINK/LOCATE RUN COMPLETE.  0 WARNING(S),  0 ERROR(S)

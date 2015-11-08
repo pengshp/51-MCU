@@ -1,0 +1,39 @@
+<html>
+<body>
+<pre>
+<h1>礦ision Build Log</h1>
+<h2>Project:</h2>
+F:\光盘资料\步骤6 51单片机例程\3 蜂鸣器\蜂鸣器试验\无源蜂鸣器响\beep.uvproj
+Project File Date:  07/12/2012
+
+<h2>Output:</h2>
+Build target 'Target 1'
+assembling STARTUP.A51...
+compiling beep.c...
+BEEP.C(5): error C132: 'main': not in formal parameter list
+BEEP.C(5): error C141: syntax error near '{'
+BEEP.C(6): error C136: 'Beep': 'void' on variable
+BEEP.C(6): error C244: 'Beep': can't initialize, bad type or class
+BEEP.C(6): error C136: 'Beep': 'void' on variable
+BEEP.C(6): error C132: 'Beep': not in formal parameter list
+BEEP.C(7): error C141: syntax error near '5'
+BEEP.C(7): error C132: 'delay': not in formal parameter list
+BEEP.C(8): error C244: 'Beep': can't initialize, bad type or class
+BEEP.C(8): error C132: 'Beep': not in formal parameter list
+BEEP.C(9): error C141: syntax error near '5'
+BEEP.C(9): error C132: 'delay': not in formal parameter list
+BEEP.C(10): error C141: syntax error near '}'
+Target not created
+Build target 'Target 1'
+assembling STARTUP.A51...
+compiling beep.c...
+linking...
+Program Size: data=9.0 xdata=0 code=63
+"beep" - 0 Error(s), 0 Warning(s).
+Build target 'Target 1'
+assembling STARTUP.A51...
+compiling beep.c...
+linking...
+Program Size: data=9.0 xdata=0 code=63
+creating hex file from "beep"...
+"beep" - 0 Error(s), 0 Warning(s).

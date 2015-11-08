@@ -1,0 +1,59 @@
+C51 COMPILER V9.54   MAIN                                                                  07/20/2015 00:56:40 PAGE 1   
+
+
+C51 COMPILER V9.54, COMPILATION OF MODULE MAIN
+OBJECT MODULE PLACED IN .\Objects\main.obj
+COMPILER INVOKED BY: C:\Keil_v5\C51\BIN\C51.EXE main.c OPTIMIZE(8,SPEED) BROWSE DEBUG OBJECTEXTEND PRINT(.\Listings\main
+                    -.lst) OBJECT(.\Objects\main.obj)
+
+line level    source
+
+   1          /**************************************
+   2            > File Name: 定时器实验
+   3            > Author: pengshp
+   4            > Mail: pengshp3@outlook.com
+   5            > Date: 2015年 7 月 19 日
+   6          ***************************************/
+   7          #include<reg51.h>
+   8          #include<intrins.h>
+   9          #define GPIO_LED P2
+  10          unsigned char Time;
+  11          
+  12          void main()
+  13          {
+  14   1              Time=0;
+  15   1              GPIO_LED=0x01;   //最左边一个灯亮
+  16   1              TMOD = 0x01;     //选择工作模式1
+  17   1              TH0 = 0x3C;          //设置初始值,定时50ms
+  18   1              TL0 = 0xB0; 
+  19   1              TR0 = 1;                 //启动定时器0
+  20   1              while(1)
+  21   1              {
+  22   2                      if(TF0==1)                          //判断T0是否溢出
+  23   2                      {
+  24   3                              TF0=0;                           //T0溢出后，清零中断标志
+  25   3                              TH0 = 0x3C;
+  26   3                  TL0 = 0xB0; 
+  27   3                              Time++;                         //计数值自加1
+  28   3                              if(Time==20)                    //20*50ms=1s
+  29   3                              {
+  30   4                                      GPIO_LED=_crol_(GPIO_LED,1);//左移一位
+  31   4                                      Time=0;                     //重新置0
+  32   4                              }
+  33   3                       }
+  34   2               }
+  35   1       }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =     53    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =      1    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

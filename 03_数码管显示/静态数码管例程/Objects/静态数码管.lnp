@@ -1,0 +1,3 @@
+".\Objects\main.obj" 
+TO ".\Objects\静态数码管" 
+PRINT(".\Listings\静态数码管.m51")
