@@ -1,0 +1,3 @@
+".\Objects\main.obj" 
+TO ".\Objects\四线双极性步进电机" 
+PRINT(".\Listings\四线双极性步进电机.m51") RAMSIZE(256) 

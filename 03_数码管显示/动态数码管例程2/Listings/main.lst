@@ -1,0 +1,91 @@
+C51 COMPILER V9.54   MAIN                                                                  08/01/2015 14:34:09 PAGE 1   
+
+
+C51 COMPILER V9.54, COMPILATION OF MODULE MAIN
+OBJECT MODULE PLACED IN .\Objects\main.obj
+COMPILER INVOKED BY: C:\Keil_v5\C51\BIN\C51.EXE main.c OPTIMIZE(8,SPEED) BROWSE DEBUG OBJECTEXTEND PRINT(.\Listings\main
+                    -.lst) OBJECT(.\Objects\main.obj)
+
+line level    source
+
+   1          /**************************************
+   2            > File Name: 定时器中断
+   3            > Author: pengshp
+   4            > Mail: pengshp3@outlook.com
+   5            > Date: 2015年 8 月 1 日
+   6          ***************************************/
+   7          #include <reg51.h>
+   8          #define uchar unsigned char
+   9          #define uint unsigned int
+  10          
+  11          unsigned char code LedChar[]={
+  12                  0xC0, 0xF9, 0xA4, 0xB0, 0x99, 0x92, 0x82, 0xF8,
+  13                  0x80, 0x90, 0x88, 0x83, 0xC6, 0xA1, 0x86, 0x8E
+  14                  };      //共阳极数码管真值表
+  15          uchar LedBuff[8]={0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00};
+  16          uchar i=0;
+  17          uchar flagls=0;
+  18          uint cnt=0;
+  19          
+  20          void main()
+  21          {
+  22   1              unsigned long sec=0;
+  23   1              
+  24   1              EA=1;
+  25   1              TMOD=0x01;
+  26   1              TH0=0xFC;
+  27   1              TL0=0x18;           //1ms后溢出
+  28   1              ET0=1;              //定时器0使能中断
+  29   1              TR0=1;              //打开定时器0
+  30   1              while(1)
+  31   1              {
+  32   2                      if(flagls==1)
+  33   2                      {
+  34   3                              flagls=0;
+  35   3                              sec++;
+  36   3                              LedBuff[0] = ~LedChar[sec%10];
+  37   3                              LedBuff[1] = ~LedChar[sec/10%10];
+  38   3                              LedBuff[2] = ~LedChar[sec/100%10];
+  39   3                              LedBuff[3] = ~LedChar[sec/1000%10];
+  40   3                              LedBuff[4] = ~LedChar[sec/10000%10];
+  41   3                              LedBuff[5] = ~LedChar[sec/100000%10];
+  42   3                              LedBuff[6] = ~LedChar[sec/1000000%10];
+  43   3                              LedBuff[7] = ~LedChar[sec/10000000%10];
+  44   3                      }
+  45   2              }
+  46   1      }
+  47          
+  48          /*定时器0中断使能函数*/
+  49          void InterruptTimer0()  interrupt 1
+  50          {
+  51   1              TH0=0xFC;
+  52   1              TL0=0x18;
+  53   1              cnt++;
+  54   1              if(cnt>=1000)       //中断1000次，即1s
+C51 COMPILER V9.54   MAIN                                                                  08/01/2015 14:34:09 PAGE 2   
+
+  55   1              {
+  56   2                      cnt=0;
+  57   2                      flagls=1;
+  58   2              }
+  59   1              P1=0x00;            //数码管消隐
+  60   1              for(;i<8;i++)
+  61   1              {
+  62   2                      P0=~LedChar[i];
+  63   2                      P1=LedBuff[i];
+  64   2              }
+  65   1      }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    470    ----
+   CONSTANT SIZE    =     16    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =     12       4
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

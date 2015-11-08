@@ -1,0 +1,142 @@
+C51 COMPILER V9.54   MAIN                                                                  07/17/2015 01:13:53 PAGE 1   
+
+
+C51 COMPILER V9.54, COMPILATION OF MODULE MAIN
+OBJECT MODULE PLACED IN .\Objects\main.obj
+COMPILER INVOKED BY: C:\Keil_v5\C51\BIN\C51.EXE main.c OPTIMIZE(8,SPEED) BROWSE DEBUG OBJECTEXTEND PRINT(.\Listings\main
+                    -.lst) OBJECT(.\Objects\main.obj)
+
+line level    source
+
+   1          /***********************************************
+   2             > File Name: 独立按键实验
+   3             > Author: pengshp
+   4             > Mail: pengshp3@outlook.com
+   5             > Date: 2015年 7 月 16 日
+   6          *************************************************/
+   7          //--包含你要使用的头文件--//
+   8          #include <reg51.h>         //此文件中定义了51的一些特殊功能寄存器
+   9          #include <intrins.h>
+  10          
+  11          //--定义要使用的IO口--//
+  12          #define  GPIO_KEY P1           //独立键盘用P1口
+  13          #define  GPIO_LED P0           //led使用P0口
+  14          
+  15          //--声明全局函数--//
+  16          void Delay10ms(unsigned int c); //延时10ms
+  17          unsigned char Key_Scan();
+  18          
+  19          void main(void)
+  20          {
+  21   1              unsigned char ledValue, keyNum;
+  22   1      
+  23   1              ledValue = 0x01;
+  24   1      
+  25   1              while (1)
+  26   1              {       
+  27   2                      keyNum = Key_Scan();  //扫描键盘
+  28   2      
+  29   2                      switch (keyNum)
+  30   2                      {
+  31   3                              case(0xFE) :      //返回按键K1的数据
+  32   3                                      ledValue = 0x01;
+  33   3                                      break;
+  34   3                              case(0xFD) :      //返回按键K2的数据
+  35   3                                      ledValue = 0x02;
+  36   3                                      break;
+  37   3                              case(0xFB) :      //返回按键K3的数据
+  38   3                                      ledValue = 0x04;
+  39   3                                      break;
+  40   3                              case(0xF7) :      //返回按键K4的数据
+  41   3                                      ledValue = 0x08;
+  42   3                                      break;
+  43   3                              case(0xEF) :      //返回按键K5的数据
+  44   3                                      ledValue = 0x10;
+  45   3                                      break;
+  46   3                              case(0xDF) :      //返回按键K6的数据
+  47   3                                      ledValue = 0x20;
+  48   3                                      break;
+  49   3                              case(0xBF) :      //返回按键K7的数据
+  50   3                                      ledValue = 0x40;
+  51   3                                      break;
+  52   3                              case(0x7F) :      //返回按键K8的数据
+  53   3                                      ledValue = 0x80;
+  54   3                                      break;
+C51 COMPILER V9.54   MAIN                                                                  07/17/2015 01:13:53 PAGE 2   
+
+  55   3                              default:
+  56   3                                      break;
+  57   3                      }
+  58   2      
+  59   2                      GPIO_LED = ledValue;  //点亮LED灯
+  60   2              }                               
+  61   1      }
+  62          
+  63          /*******************************************************************************
+  64          * 函 数 名         : Key_Scan()
+  65          * 函数功能                 : 扫描键盘
+  66          * 输    入         : 无
+  67          * 输    出         : 读取到的键值
+  68          *******************************************************************************/
+  69          
+  70          unsigned char Key_Scan()
+  71          {
+  72   1              unsigned char keyValue = 0 , i; //保存键值
+  73   1      
+  74   1              //--检测按键1--//
+  75   1              if (GPIO_KEY != 0xFF)           //检测按键K1是否按下
+  76   1              {
+  77   2                      Delay10ms(1);           //消除抖动
+  78   2      
+  79   2                      if (GPIO_KEY != 0xFF)   //再次检测按键是否按下
+  80   2                      {
+  81   3                              keyValue = GPIO_KEY;
+  82   3                              i = 0;
+  83   3                              while ((i<50) && (GPIO_KEY != 0xFF))     //检测按键是否松开
+  84   3                              {
+  85   4                                      Delay10ms(1);
+  86   4                                      i++;
+  87   4                              }
+  88   3                      }
+  89   2              }
+  90   1      
+  91   1              return keyValue;   //将读取到键值的值返回
+  92   1      }
+  93          
+  94          /*******************************************************************************
+  95          * 函 数 名         : Delay10ms
+  96          * 函数功能                 : 延时函数，延时10ms
+  97          * 输    入         : 无
+  98          * 输    出         : 无
+  99          *******************************************************************************/
+ 100          
+ 101          void Delay10ms(unsigned int c)   //误差 0us
+ 102          {
+ 103   1          unsigned char a, b;
+ 104   1      
+ 105   1              //--c已经在传递过来的时候已经赋值了，所以在for语句第一句就不用赋值了--//
+ 106   1          for (;c>0;c--)
+ 107   1              {
+ 108   2                      for (b=38;b>0;b--)
+ 109   2                      {
+ 110   3                              for (a=130;a>0;a--);
+ 111   3                      }
+ 112   2                 
+ 113   2              }       
+ 114   1      }
+
+
+C51 COMPILER V9.54   MAIN                                                                  07/17/2015 01:13:53 PAGE 3   
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    156    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----       3
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)
