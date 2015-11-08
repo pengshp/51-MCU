@@ -1,3 +1,0 @@
-".\Objects\main.obj" 
-TO ".\Objects\定时器精确控制显示" 
-PRINT(".\Listings\定时器精确控制显示.m51") RAMSIZE(256) 

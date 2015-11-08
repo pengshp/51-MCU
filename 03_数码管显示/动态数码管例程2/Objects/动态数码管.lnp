@@ -1,3 +1,0 @@
-".\Objects\main.obj" 
-TO ".\Objects\动态数码管" 
-PRINT(".\Listings\动态数码管.m51") RAMSIZE(256) 

@@ -1,3 +1,0 @@
-".\Objects\main.obj" 
-TO ".\Objects\红外通信" 
-PRINT(".\Listings\红外通信.m51") RAMSIZE(256) 
