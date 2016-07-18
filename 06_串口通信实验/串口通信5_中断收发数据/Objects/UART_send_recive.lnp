@@ -1,0 +1,3 @@
+".\Objects\main.obj" 
+TO ".\Objects\UART_send_recive" 
+PRINT(".\Listings\UART_send_recive.m51") RAMSIZE(256) 

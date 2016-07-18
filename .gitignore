@@ -1,10 +1,11 @@
 
 
-.png
+*.png
 
-.A51
+*.A51
 
-.obj
+*.obj
 
-.htm
+*.htm
 
+*.hex

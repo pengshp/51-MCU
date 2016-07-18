@@ -1,0 +1,3 @@
+".\Objects\main.obj" 
+TO ".\Objects\UART_resevice" 
+PRINT(".\Listings\UART_resevice.m51") RAMSIZE(256) 

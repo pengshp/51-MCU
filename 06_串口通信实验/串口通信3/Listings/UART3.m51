@@ -1,0 +1,133 @@
+BL51 BANKED LINKER/LOCATER V6.22                                                        03/26/2016  23:05:13  PAGE 1
+
+
+BL51 BANKED LINKER/LOCATER V6.22, INVOKED BY:
+C:\KEIL_V5\C51\BIN\BL51.EXE .\Objects\main.obj TO .\Objects\UART3 PRINT (.\Listings\UART3.m51) RAMSIZE (256)
+
+
+MEMORY MODEL: SMALL
+
+
+INPUT MODULES INCLUDED:
+  .\Objects\main.obj (MAIN)
+  C:\KEIL_V5\C51\LIB\C51S.LIB (?C_STARTUP)
+  C:\KEIL_V5\C51\LIB\C51S.LIB (?C?CLDPTR)
+
+
+LINK MAP OF MODULE:  .\Objects\UART3 (MAIN)
+
+
+            TYPE    BASE      LENGTH    RELOCATION   SEGMENT NAME
+            -----------------------------------------------------
+
+            * * * * * * *   D A T A   M E M O R Y   * * * * * * *
+            REG     0000H     0008H     ABSOLUTE     "REG BANK 0"
+            DATA    0008H     0004H     UNIT         _DATA_GROUP_
+            IDATA   000CH     0001H     UNIT         ?STACK
+
+            * * * * * * *   C O D E   M E M O R Y   * * * * * * *
+            CODE    0000H     0003H     ABSOLUTE     
+            CODE    0003H     0025H     UNIT         ?PR?_SENDSTR?MAIN
+            CODE    0028H     001CH     UNIT         ?CO?MAIN
+            CODE    0044H     0019H     UNIT         ?C?LIB_CODE
+            CODE    005DH     0012H     UNIT         ?PR?INIT_UART?MAIN
+            CODE    006FH     0011H     UNIT         ?PR?MAIN?MAIN
+            CODE    0080H     000CH     UNIT         ?C_C51STARTUP
+            CODE    008CH     0008H     UNIT         ?PR?_SENDONEBYTE?MAIN
+
+
+
+OVERLAY MAP OF MODULE:   .\Objects\UART3 (MAIN)
+
+
+SEGMENT                          DATA_GROUP 
+  +--> CALLED SEGMENT          START    LENGTH
+----------------------------------------------
+?C_C51STARTUP                  -----    -----
+  +--> ?PR?MAIN?MAIN
+
+?PR?MAIN?MAIN                  0008H    0001H
+  +--> ?PR?INIT_UART?MAIN
+  +--> ?CO?MAIN
+  +--> ?PR?_SENDSTR?MAIN
+
+?PR?_SENDSTR?MAIN              0009H    0003H
+  +--> ?PR?_SENDONEBYTE?MAIN
+
+
+
+SYMBOL TABLE OF MODULE:  .\Objects\UART3 (MAIN)
+
+  VALUE           TYPE          NAME
+BL51 BANKED LINKER/LOCATER V6.22                                                      03/26/2016  23:05:13  PAGE 2
+
+
+  ----------------------------------
+
+  -------         MODULE        MAIN
+  C:0000H         SYMBOL        _ICE_DUMMY_
+  C:0028H         PUBLIC        TAB1
+  B:0098H.1       PUBLIC        TI
+  C:006FH         PUBLIC        main
+  D:0099H         PUBLIC        SBUF
+  D:0087H         PUBLIC        PCON
+  D:0098H         PUBLIC        SCON
+  D:0089H         PUBLIC        TMOD
+  C:0003H         PUBLIC        _SendStr
+  C:008CH         PUBLIC        _SendOneByte
+  D:008DH         PUBLIC        TH1
+  D:008BH         PUBLIC        TL1
+  C:005DH         PUBLIC        init_UART
+  B:0088H.6       PUBLIC        TR1
+  -------         PROC          INIT_UART
+  C:005DH         LINE#         13
+  C:005DH         LINE#         14
+  C:005DH         LINE#         15
+  C:0060H         LINE#         16
+  C:0063H         LINE#         17
+  C:0066H         LINE#         18
+  C:0069H         LINE#         19
+  C:006CH         LINE#         22
+  C:006EH         LINE#         23
+  -------         ENDPROC       INIT_UART
+  -------         PROC          _SENDONEBYTE
+  D:0007H         SYMBOL        c
+  C:008CH         LINE#         25
+  C:008CH         LINE#         26
+  C:008CH         LINE#         27
+  C:008EH         LINE#         28
+  C:0091H         LINE#         29
+  C:0093H         LINE#         30
+  -------         ENDPROC       _SENDONEBYTE
+  -------         PROC          _SENDSTR
+  D:0009H         SYMBOL        pStr
+  C:0003H         LINE#         32
+  C:0009H         LINE#         33
+  C:0009H         LINE#         34
+  C:0014H         LINE#         35
+  C:0014H         LINE#         36
+  C:0025H         LINE#         37
+  C:0027H         LINE#         38
+  -------         ENDPROC       _SENDSTR
+  -------         PROC          MAIN
+  -------         DO            
+  D:0008H         SYMBOL        a
+  -------         ENDDO         
+  C:006FH         LINE#         39
+  C:006FH         LINE#         40
+  C:006FH         LINE#         41
+  C:0072H         LINE#         42
+  C:0075H         LINE#         44
+  C:007EH         LINE#         45
+BL51 BANKED LINKER/LOCATER V6.22                                                      03/26/2016  23:05:13  PAGE 3
+
+
+  -------         ENDPROC       MAIN
+  -------         ENDMOD        MAIN
+
+  -------         MODULE        ?C?CLDPTR
+  C:0044H         PUBLIC        ?C?CLDPTR
+  -------         ENDMOD        ?C?CLDPTR
+
+Program Size: data=13.0 xdata=0 code=148
+LINK/LOCATE RUN COMPLETE.  0 WARNING(S),  0 ERROR(S)

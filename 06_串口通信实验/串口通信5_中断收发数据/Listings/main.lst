@@ -1,0 +1,91 @@
+C51 COMPILER V9.55   MAIN                                                                  03/27/2016 01:34:48 PAGE 1   
+
+
+C51 COMPILER V9.55, COMPILATION OF MODULE MAIN
+OBJECT MODULE PLACED IN .\Objects\main.obj
+COMPILER INVOKED BY: C:\Keil_v5\C51\BIN\C51.EXE main.c OPTIMIZE(8,SPEED) BROWSE DEBUG OBJECTEXTEND PRINT(.\Listings\main
+                    -.lst) OBJECT(.\Objects\main.obj)
+
+line level    source
+
+   1          /**************************************
+   2            > File Name: 中断实现收发数据
+   3            > Author: pengshp
+   4            > Mail: pengshp3@outlook.com
+   5            > Date: 2016 年 3 月 28 日
+   6          ***************************************/
+   7          #include <reg51.h>
+   8          #include <stdio.h>
+   9          #define uchar unsigned char
+  10          #define uint unsigned int
+  11                  
+  12          uint getDate=0;
+  13          bit RxTx_Flag=0;
+  14          void InitUART(void)
+  15          {
+  16   1          TMOD = 0x20; //串口工作模式1
+  17   1          SCON = 0x50;
+  18   1          TH1 = 0xFA;  //波特率9600
+  19   1          TL1 = TH1;
+  20   1          PCON = 0x80; //波特率加倍
+  21   1          EA = 1;      //总中断
+  22   1          ES = 1;      //串口中断
+  23   1          TR1 = 1;     //定时器1
+  24   1      }
+  25          
+  26          void SendOneByte(unsigned char c)
+  27          {
+  28   1          SBUF = c;
+  29   1          while(!TI);
+  30   1          TI = 0;
+  31   1      }
+  32          
+  33          int main()
+  34          {
+  35   1          InitUART();
+  36   1              while(1)
+  37   1              {
+  38   2                      if(RxTx_Flag)
+  39   2                      {
+  40   3                              RxTx_Flag=0;
+  41   3                              ES=0;//屏蔽外部中断，防干扰
+  42   3                              TI=1;printf("你给我一个:");while(!TI);TI=0;
+  43   3                              SBUF=getDate;
+  44   3                              while(!TI); //等待数据发送完毕
+  45   3                              TI=0;
+  46   3                              TI=1;printf("\n");while(!TI);TI=0;
+  47   3                              TI=1;printf("我给你一个ASCII: 0x%x",getDate);while(!TI);TI=0;
+  48   3                              TI=1;printf("\n");while(!TI);TI=0;
+  49   3                              ES=1; //开中断标志位
+  50   3                      }
+  51   2              }
+  52   1              return 0;
+  53   1      }
+  54          
+C51 COMPILER V9.55   MAIN                                                                  03/27/2016 01:34:48 PAGE 2   
+
+  55          void UARTInterrupt() interrupt 4
+  56          {
+  57   1          if(RI)
+  58   1          {
+  59   2              RI = 0;//数据接收完成后软件清零
+  60   2              //add your code here!
+  61   2                      getDate=SBUF;//读取数据
+  62   2                      RxTx_Flag=1; //接收标志位
+  63   2          }
+  64   1      }
+*** WARNING C294 IN LINE 52 OF main.c: unreachable code
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    148    ----
+   CONSTANT SIZE    =     36    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =      2    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =      1    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  1 WARNING(S),  0 ERROR(S)
